@@ -1,4 +1,6 @@
-/** Array Operations Class. Optional Exercise **/
+/**
+ * Array Operations Class. Optional Exercise
+ **/
 public class ArrayOperations {
     /**
      * Delete the value at the given position in the argument array, shifting
@@ -10,6 +12,15 @@ public class ArrayOperations {
             return;
         }
         // TODO: fill out this function
+        int[] t = new int[values.length];
+        int offset = 0;
+        for (int i = 0; i + offset < values.length; i++) {
+            if (i == pos) offset--;
+            if (i < values.length - 1) {
+                t[i] = values[i - offset];
+            }
+        }
+        System.arraycopy(t, 0, values, 0, values.length);
     }
 
     /**
@@ -22,15 +33,32 @@ public class ArrayOperations {
             return;
         }
         // TODO: fill out this function
+        int[] t = new int[values.length];
+        int offset = 0;
+        for (int i = 0; i - offset < values.length; i++) {
+            if (i == pos) {
+                t[i] = newInt;
+                offset++;
+            } else {
+                if (i < values.length)
+                    t[i] = values[i - offset];
+            }
+        }
+        System.arraycopy(t, 0, values, 0, values.length);
     }
 
-    /** 
+    /**
      * Returns a new array consisting of the elements of A followed by the
-     *  the elements of B. 
+     * the elements of B.
      */
     public static int[] catenate(int[] A, int[] B) {
         // TODO: fill out this function
-        return null;
+        if (A.length == 0 && B.length == 0)
+            return null;
+        int[] t = new int[A.length + B.length];
+        System.arraycopy(A, 0, t, 0, A.length);
+        System.arraycopy(B, 0, t, A.length, B.length);
+        return t;
     }
 
 }
